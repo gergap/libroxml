@@ -21,7 +21,7 @@
 #include <pthread.h>
 #endif
 
-#if(CONFIG_XML_THREAD_SAFE==0)
+#ifndef CONFIG_XML_THREAD_SAFE
 ROXML_STATIC_INLINE ROXML_INT unsigned long int roxml_thread_id(node_t *n)
 {
 	ROXML_UNUSED(n);

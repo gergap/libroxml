@@ -70,9 +70,9 @@
  *
  * This is the internal buffer size for chunk of xml files
  */
-#if(CONFIG_XML_SMALL_BUFFER==1)
+#ifdef CONFIG_XML_SMALL_BUFFER
 #define ROXML_BULK_READ		256
-#else /* CONFIG_XML_SMALL_BUFFER==0 */
+#else /* CONFIG_XML_SMALL_BUFFER */
 #define ROXML_BULK_READ		4096
 #endif /* CONFIG_XML_SMALL_BUFFER */
 
@@ -85,9 +85,9 @@
  * This is also the len of internal buffers. If a requested buffer is bigger,
  * then a malloc/free will occur and may slow down libroxml.
  */
-#if(CONFIG_XML_SMALL_BUFFER==1)
+#ifdef CONFIG_XML_SMALL_BUFFER
 #define ROXML_BASE_LEN		64
-#else /* CONFIG_XML_SMALL_BUFFER==0 */
+#else /* CONFIG_XML_SMALL_BUFFER */
 #define ROXML_BASE_LEN		512
 #endif /* CONFIG_XML_SMALL_BUFFER */
 

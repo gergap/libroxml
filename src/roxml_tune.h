@@ -43,48 +43,48 @@
  * buffers or heap. Stack require some RAM while heap
  * can cut off performances.
  * This option should not be activated.
- * If unsure, set to 0
+ * If unsure, disable it
  */
 #ifndef CONFIG_XML_HEAP_BUFFERS
-#define CONFIG_XML_HEAP_BUFFERS	0
+/* #undef CONFIG_XML_HEAP_BUFFERS */
 #endif /* CONFIG_XML_HEAP_BUFFERS */
 
 /* Is the target library thread safe or not
  * This option should be activated.
- * If unsure, set to 1
+ * If unsure, enable it
  */
 #ifndef CONFIG_XML_THREAD_SAFE
-#if(CONFIG_XML_HEAP_BUFFERS==1)
-#error "The CONFIG_XML_THREAD_SAFE option is not compatible with CONFIG_XML_HEAP_BUFFERS. Disable one of those."
-#endif
-#define CONFIG_XML_THREAD_SAFE	1
+# ifdef CONFIG_XML_HEAP_BUFFERS
+#  error "The CONFIG_XML_THREAD_SAFE option is not compatible with CONFIG_XML_HEAP_BUFFERS. Disable one of those."
+# endif
+# define CONFIG_XML_THREAD_SAFE
 #endif /* CONFIG_XML_THREAD_SAFE */
 
 /* Define the size of internal buffer.
  * For very small systems, large internal buffers
  * can cause the systeml the behave strangely.
  * This option should not be activated.
- * If unsure, set to 0
+ * If unsure, disable it
  */
 #ifndef CONFIG_XML_SMALL_BUFFER
-#define CONFIG_XML_SMALL_BUFFER	0
+/* #undef CONFIG_XML_SMALL_BUFFER */
 #endif /* CONFIG_XML_SMALL_BUFFER */
 
 /* Limit the size of input XML libroxml can handle
  * to 64kb instead of 4Gb.
  * Setting this option will reduce the size of RAM loaded tree
  * This option should not be activated.
- * If unsure, set to 0
+ * If unsure, disable it
  */
 #ifndef CONFIG_XML_SMALL_INPUT_FILE
-#define CONFIG_XML_SMALL_INPUT_FILE	0
+/* #undef CONFIG_XML_SMALL_INPUT_FILE */
 #endif /* CONFIG_XML_SMALL_INPUT_FILE */
 
 /*************** Implement HEAP/STACK BUFFERS **********************/
-#if(CONFIG_XML_HEAP_BUFFERS==1)
+#ifdef CONFIG_XML_HEAP_BUFFERS
 	#define ROXML_GET_BASE_BUFFER(name) char *name = malloc(ROXML_BASE_LEN)
 	#define ROXML_PUT_BASE_BUFFER(name) free(name)
-#else /* CONFIG_XML_HEAP_BUFFERS==0 */
+#else /* CONFIG_XML_HEAP_BUFFERS */
 	#define ROXML_GET_BASE_BUFFER(name) char name[ROXML_BASE_LEN]
 	#define ROXML_PUT_BASE_BUFFER(name)
 #endif /* CONFIG_XML_HEAP_BUFFERS */
