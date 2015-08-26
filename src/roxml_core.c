@@ -125,7 +125,7 @@ ROXML_INT void roxml_del_tree(node_t *n)
 	roxml_free_node(n);
 }
 
-ROXML_INT inline int roxml_is_separator(char sep)
+ROXML_INT int roxml_is_separator(char sep)
 {
 	int i = 0;
 	char separators[32] = "\r\t\n ";
@@ -296,7 +296,7 @@ ROXML_STATIC ROXML_INT node_t *roxml_lookup_nsdef(node_t *nsdef, char *ns)
  * \param type the new type to set
  * \return
  */
-ROXML_STATIC ROXML_INT inline void roxml_set_type(node_t *n, int type)
+ROXML_STATIC ROXML_INT void roxml_set_type(node_t *n, int type)
 {
 	n->type &= ~(ROXML_ATTR_NODE | ROXML_ELM_NODE | ROXML_TXT_NODE | ROXML_CMT_NODE | ROXML_PI_NODE);
 	n->type |= type;

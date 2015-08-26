@@ -25,7 +25,7 @@
  * \param node the node that belong to the tree we want to read to
  * \return the number of bytes read
  */
-ROXML_STATIC ROXML_INT inline int roxml_read(int pos, int size, char *buffer, node_t *node)
+ROXML_STATIC ROXML_INT int roxml_read(int pos, int size, char *buffer, node_t *node)
 {
 	int len = 0;
 
@@ -39,7 +39,7 @@ ROXML_STATIC ROXML_INT inline int roxml_read(int pos, int size, char *buffer, no
 	return len;
 }
 
-ROXML_STATIC ROXML_INT inline int roxml_content_size(node_t *n, int *offset)
+ROXML_STATIC ROXML_INT int roxml_content_size(node_t *n, int *offset)
 {
 	int total = 0;
 
@@ -85,7 +85,7 @@ ROXML_STATIC ROXML_INT inline int roxml_content_size(node_t *n, int *offset)
 	return total;
 }
 
-ROXML_STATIC ROXML_INT inline char *roxml_prepare_buffer(node_t *n, char *buffer, int contentsize, int size)
+ROXML_STATIC ROXML_INT char *roxml_prepare_buffer(node_t *n, char *buffer, int contentsize, int size)
 {
 	if (n == NULL) {
 		if (buffer)
@@ -151,7 +151,7 @@ ROXML_API char *roxml_get_content(node_t *n, char *buffer, int bufsize, int *siz
 	return content;
 }
 
-ROXML_STATIC ROXML_INT inline int roxml_name_size(node_t *n, int size, int *offset)
+ROXML_STATIC ROXML_INT int roxml_name_size(node_t *n, int size, int *offset)
 {
 	int total = 0;
 
@@ -287,7 +287,7 @@ ROXML_API int roxml_get_nodes_nb(node_t *n, int type)
 	return nb;
 }
 
-ROXML_STATIC ROXML_INT inline node_t *roxml_get_nodes_by_name(node_t *n, int type, char *name)
+ROXML_STATIC ROXML_INT node_t *roxml_get_nodes_by_name(node_t *n, int type, char *name)
 {
 	node_t *ptr;
 
@@ -308,7 +308,7 @@ ROXML_STATIC ROXML_INT inline node_t *roxml_get_nodes_by_name(node_t *n, int typ
 	return NULL;
 }
 
-ROXML_STATIC ROXML_INT inline node_t *roxml_get_nodes_by_nth(node_t *n, int type, int nth)
+ROXML_STATIC ROXML_INT node_t *roxml_get_nodes_by_nth(node_t *n, int type, int nth)
 {
 	node_t *ptr;
 	int count = 0;
@@ -355,62 +355,62 @@ ROXML_API node_t *roxml_get_nodes(node_t *n, int type, char *name, int nth)
 		return roxml_get_nodes_by_name(n, type, name);
 }
 
-ROXML_API inline node_t *roxml_get_ns(node_t *n)
+ROXML_API node_t *roxml_get_ns(node_t *n)
 {
 	return roxml_get_nodes(n, ROXML_NS_NODE, NULL, 0);
 }
 
-ROXML_API inline int roxml_get_pi_nb(node_t *n)
+ROXML_API int roxml_get_pi_nb(node_t *n)
 {
 	return roxml_get_nodes_nb(n, ROXML_PI_NODE);
 }
 
-ROXML_API inline node_t *roxml_get_pi(node_t *n, int nth)
+ROXML_API node_t *roxml_get_pi(node_t *n, int nth)
 {
 	return roxml_get_nodes(n, ROXML_PI_NODE, NULL, nth);
 }
 
-ROXML_API inline int roxml_get_cmt_nb(node_t *n)
+ROXML_API int roxml_get_cmt_nb(node_t *n)
 {
 	return roxml_get_nodes_nb(n, ROXML_CMT_NODE);
 }
 
-ROXML_API inline node_t *roxml_get_cmt(node_t *n, int nth)
+ROXML_API node_t *roxml_get_cmt(node_t *n, int nth)
 {
 	return roxml_get_nodes(n, ROXML_CMT_NODE, NULL, nth);
 }
 
-ROXML_API inline int roxml_get_txt_nb(node_t *n)
+ROXML_API int roxml_get_txt_nb(node_t *n)
 {
 	return roxml_get_nodes_nb(n, ROXML_TXT_NODE);
 }
 
-ROXML_API inline node_t *roxml_get_txt(node_t *n, int nth)
+ROXML_API node_t *roxml_get_txt(node_t *n, int nth)
 {
 	return roxml_get_nodes(n, ROXML_TXT_NODE, NULL, nth);
 }
 
-ROXML_API inline int roxml_get_attr_nb(node_t *n)
+ROXML_API int roxml_get_attr_nb(node_t *n)
 {
 	return roxml_get_nodes_nb(n, ROXML_ATTR_NODE);
 }
 
-ROXML_API inline node_t *roxml_get_attr(node_t *n, char *name, int nth)
+ROXML_API node_t *roxml_get_attr(node_t *n, char *name, int nth)
 {
 	return roxml_get_nodes(n, ROXML_ATTR_NODE, name, nth);
 }
 
-ROXML_API inline int roxml_get_chld_nb(node_t *n)
+ROXML_API int roxml_get_chld_nb(node_t *n)
 {
 	return roxml_get_nodes_nb(n, ROXML_ELM_NODE);
 }
 
-ROXML_API inline node_t *roxml_get_chld(node_t *n, char *name, int nth)
+ROXML_API node_t *roxml_get_chld(node_t *n, char *name, int nth)
 {
 	return roxml_get_nodes(n, ROXML_ELM_NODE, name, nth);
 }
 
-ROXML_API inline int roxml_get_type(node_t *n)
+ROXML_API int roxml_get_type(node_t *n)
 {
 	if (n == ROXML_INVALID_DOC)
 		return ROXML_INVALID_NODE;

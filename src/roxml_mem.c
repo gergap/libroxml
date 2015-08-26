@@ -15,7 +15,7 @@
 /** \brief head of memory manager */
 memory_cell_t head_cell = { PTR_NONE, 0, NULL, 0, NULL, NULL };
 
-ROXML_STATIC ROXML_INT inline void roxml_release_last(void *data)
+ROXML_STATIC ROXML_INT void roxml_release_last(void *data)
 {
 	memory_cell_t *ptr = &head_cell;
 	memory_cell_t *to_delete = NULL;
@@ -51,7 +51,7 @@ ROXML_STATIC ROXML_INT inline void roxml_release_last(void *data)
 	}
 }
 
-ROXML_STATIC ROXML_INT inline void roxml_release_all(void *data)
+ROXML_STATIC ROXML_INT void roxml_release_all(void *data)
 {
 	memory_cell_t *to_delete = NULL;
 
@@ -75,7 +75,7 @@ ROXML_STATIC ROXML_INT inline void roxml_release_all(void *data)
 	}
 }
 
-ROXML_STATIC ROXML_INT inline void roxml_release_pointer(void *data)
+ROXML_STATIC ROXML_INT void roxml_release_pointer(void *data)
 {
 	memory_cell_t *ptr = &head_cell;
 	memory_cell_t *to_delete = NULL;
