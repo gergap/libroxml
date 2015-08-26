@@ -2221,8 +2221,23 @@ int test_xpath(void)
 	ASSERT_STRING_EQUAL(roxml_get_content(attr, NULL, 0, NULL), "4")
 #endif
 
+    /* The test data contains the value attributes:
+     *                              val     floor(val)
+     * <node0>
+     * <item val=1 id=0/>           1       1
+     * <item val=2 id=1/>           2       2
+     * <item val=2 id=2/>           2       2
+     * <item val=2.2 id=3/>         2.2     2
+     * <item val=3 id=4/>           3       2
+     * <item val=4 id=5/>           4       4
+     * <item id=6 str="33><32"/>    6       6
+     * <item id=7 str="foo/bar">    7       7
+     * </item>
+     * </node0>
+     */
 	node_set = roxml_xpath(root, "/node0/item[@val > 2.1]", &nbans);
 #ifdef CONFIG_XML_FLOAT
+    /* 3 items have [@val > 2.1]: 2.2, 3, 4 */
 	ASSERT_EQUAL(nbans, 3)
 	attr = roxml_get_attr(node_set[0], "id", 0);
 	ASSERT_STRING_EQUAL(roxml_get_content(attr, NULL, 0, NULL), "3")
@@ -2231,6 +2246,8 @@ int test_xpath(void)
 	attr = roxml_get_attr(node_set[2], "id", 0);
 	ASSERT_STRING_EQUAL(roxml_get_content(attr, NULL, 0, NULL), "5")
 #else
+    /* attributes are truncated to int and
+     * xpath is truncated to [@val > 2] => 2 results: 3, 4 */
 	ASSERT_EQUAL(nbans, 2)
 	attr = roxml_get_attr(node_set[0], "id", 0);
 	ASSERT_STRING_EQUAL(roxml_get_content(attr, NULL, 0, NULL), "4")
