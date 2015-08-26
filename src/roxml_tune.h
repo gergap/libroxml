@@ -39,6 +39,16 @@
 
 /*************** Define the default behaviour **********************/
 
+/* Is the target library uses stack for internal
+ * buffers or heap. Stack require some RAM while heap
+ * can cut off performances.
+ * This option should not be activated.
+ * If unsure, set to 0
+ */
+#ifndef CONFIG_XML_HEAP_BUFFERS
+#define CONFIG_XML_HEAP_BUFFERS	0
+#endif /* CONFIG_XML_HEAP_BUFFERS */
+
 /* Is the target library thread safe or not
  * This option should be activated.
  * If unsure, set to 1
@@ -49,16 +59,6 @@
 #endif
 #define CONFIG_XML_THREAD_SAFE	1
 #endif /* CONFIG_XML_THREAD_SAFE */
-
-/* Is the target library uses stack for internal
- * buffers or heap. Stack require some RAM while heap
- * can cut off performances.
- * This option should not be activated.
- * If unsure, set to 0
- */
-#ifndef CONFIG_XML_HEAP_BUFFERS
-#define CONFIG_XML_HEAP_BUFFERS	0
-#endif /* CONFIG_XML_HEAP_BUFFERS */
 
 /* Define the size of internal buffer.
  * For very small systems, large internal buffers
