@@ -12,6 +12,9 @@
 #ifndef ROXML_H
 #define ROXML_H
 
+/* Macro for suppressing unused parameter warnings */
+#define ROXML_UNUSED(x) (void)(x)
+
 /**
  * \def ROXML_API
  *
@@ -1303,3 +1306,4 @@ ROXML_API int  roxml_commit_fd(node_t *n, int fd, int human);
 
 
 #endif /* ROXML_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

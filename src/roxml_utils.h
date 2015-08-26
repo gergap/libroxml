@@ -13,6 +13,7 @@
 #define ROXML_UTILS_H
 
 #include <stdlib.h>
+#include <roxml.h>
 
 #if defined(_WIN32)
 #include "roxml_win32_native.h"
@@ -23,31 +24,37 @@
 #if(CONFIG_XML_THREAD_SAFE==0)
 ROXML_STATIC_INLINE ROXML_INT unsigned long int roxml_thread_id(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return 0;
 }
 
 ROXML_STATIC_INLINE ROXML_INT int roxml_lock_init(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return 0;
 }
 
 ROXML_STATIC_INLINE ROXML_INT int roxml_lock_destroy(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return 0;
 }
 
 ROXML_STATIC_INLINE ROXML_INT int roxml_lock(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return 0;
 }
 
 ROXML_STATIC_INLINE ROXML_INT int roxml_unlock(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return 0;
 }
 #else /* CONFIG_XML_THREAD_SAFE==1 */
 ROXML_STATIC_INLINE ROXML_INT unsigned long int roxml_thread_id(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return pthread_self();
 }
 
@@ -109,3 +116,4 @@ ROXML_STATIC_INLINE ROXML_INT double roxml_strtonum(const char *str, char **end)
 #endif /* CONFIG_XML_FLOAT */
 
 #endif /* ROXML_UTILS */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/
