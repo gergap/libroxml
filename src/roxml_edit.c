@@ -11,6 +11,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "roxml_core.h"
 
 /** \brief get real sibling
@@ -83,7 +84,13 @@ ROXML_STATIC ROXML_INT void roxml_reset_ns(node_t *n, node_t *ns)
  */
 ROXML_STATIC ROXML_INT void roxml_del_std_node(node_t *n)
 {
-	node_t *current = n->prnt->chld;
+	node_t *current;
+
+	/* sanity check */
+	assert(n != NULL && n->prnt != NULL);
+	if (n == NULL || n->prnt == NULL) return;
+
+	current = n->prnt->chld;
 
 	if (n->prnt && n->prnt->next == n)
 		n->prnt->next = roxml_get_real_prev_sibling(n);
