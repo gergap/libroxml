@@ -454,7 +454,7 @@ ROXML_STATIC ROXML_INT int roxml_double_cmp(double a, double b, int op)
  * \param op the operator to use
  * \return 1 if comparison is ok, else 0
  */
-ROXML_STATIC ROXML_INT int roxml_string_cmp(char *sa, char *sb, int op)
+ROXML_STATIC ROXML_INT int roxml_string_cmp(const char *sa, const char *sb, int op)
 {
 	int result;
 
@@ -1014,7 +1014,7 @@ ROXML_STATIC ROXML_INT xpath_node_t *roxml_set_axes(xpath_node_t *node, char *ax
 {
 	struct _xpath_axes {
 		char id;
-		char *name;
+		const char *name;
 	};
 
 	struct _xpath_axes xpath_axes[14] = {
@@ -1485,7 +1485,7 @@ ROXML_INT int _func_xpath_number(char *chunk, void *data)
 	return cur;
 }
 
-ROXML_INT int _func_xpath_funcs(char *chunk, void *data, int func, char *name)
+ROXML_INT int _func_xpath_funcs(char *chunk, void *data, int func, const char *name)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);

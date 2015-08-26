@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stdarg.h>
+#include <unistd.h> /* for dup */
 #include "roxml_core.h"
 
 ROXML_STATIC ROXML_INT void roxml_realloc_buf(char **buf, int *len, int min_len)
@@ -54,7 +56,7 @@ ROXML_STATIC ROXML_INT void roxml_print_spaces(FILE *f, char **buf, int *offset,
 
 /** \brief string writter function
  *
- * \fn void roxml_write_string(FILE *f, char **buf, int *offset, int *len, char *str, ...);
+ * \fn void roxml_write_string(FILE *f, char **buf, int *offset, int *len, const char *str, ...);
  * this function write a string to output when committing change
  * \param f the file pointer if any
  * \param buf the pointer to string if any
@@ -63,7 +65,7 @@ ROXML_STATIC ROXML_INT void roxml_print_spaces(FILE *f, char **buf, int *offset,
  * \param len the total len of buffer if any
  * \return
  */
-ROXML_STATIC ROXML_INT void roxml_write_string(FILE *f, char **buf, int *offset, int *len, char *str, ...)
+ROXML_STATIC ROXML_INT void roxml_write_string(FILE *f, char **buf, int *offset, int *len, const char *str, ...)
 {
 	va_list args;
 	int min_len;

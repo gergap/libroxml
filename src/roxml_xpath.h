@@ -54,7 +54,7 @@ ROXML_INT int _func_xpath_operator_sup(char *chunk, void *data);
 ROXML_INT int _func_xpath_operator_inf(char *chunk, void *data);
 ROXML_INT int _func_xpath_operator_diff(char *chunk, void *data);
 ROXML_INT int _func_xpath_number(char *chunk, void *data);
-ROXML_INT int _func_xpath_funcs(char *chunk, void *data, int func, char *name);
+ROXML_INT int _func_xpath_funcs(char *chunk, void *data, int func, const char *name);
 ROXML_INT int _func_xpath_position(char *chunk, void *data);
 ROXML_INT int _func_xpath_first(char *chunk, void *data);
 ROXML_INT int _func_xpath_last(char *chunk, void *data);
