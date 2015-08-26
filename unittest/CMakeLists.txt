@@ -3,6 +3,11 @@ project(unittest C)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 # global test defines
 add_definitions(-DUNITTEST -DREENTRANT -D__DEBUG -DIGNORE_EMPTY_TEXT_NODES)
+
+if ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
+    add_definitions(-DLINUX)
+endif()
+
 if (CONFIG_XML_FLOAT)
     add_definitions(-DCONFIG_XML_FLOAT)
 endif()
