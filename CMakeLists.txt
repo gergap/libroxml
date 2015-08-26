@@ -9,6 +9,7 @@ option(CONFIG_XML_FILE   "Can the target library parse file documents. When set 
 option(CONFIG_XML_EDIT   "Can the target library modify XML tree. When set to OFF, this result in smaller binary (this saves about 3kb)" ON)
 option(CONFIG_XML_COMMIT "Can the target library commit a tree. When set to OFF, this result in smaller binary (this saves about 5kb)." ON)
 option(CONFIG_XML_XPATH  "Can the target library perform xpath queries. When set to 0, this result in smaller binary (this saves about 20kb)." ON)
+option(CONFIG_XML_FLOAT  "Target supports float xml values." ON)
 
 # Enable UnitTest and CDash support
 # This also adds the option BUILD_TESTING
@@ -54,6 +55,10 @@ set(ROXML_HEADERS
 	src/roxml_types.h
 	src/roxml_xpath.h
 )
+
+if (CONFIG_XML_FLOAT)
+    add_definitions(-DCONFIG_XML_FLOAT)
+endif()
 
 if (CONFIG_XML_FILE)
     add_definitions(-DCONFIG_XML_FILE)

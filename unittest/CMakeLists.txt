@@ -3,6 +3,10 @@ project(unittest C)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 # global test defines
 add_definitions(-DUNITTEST -DREENTRANT -D__DEBUG -DIGNORE_EMPTY_TEXT_NODES)
+if (CONFIG_XML_FLOAT)
+    add_definitions(-DCONFIG_XML_FLOAT)
+endif()
+
 # additional defines for default configuration
 set(DEFAULT_CONFIG "CONFIG_XML_CONTENT;CONFIG_XML_NAV;CONFIG_XML_BUFF;CONFIG_XML_COMMIT;CONFIG_XML_EDIT;CONFIG_XML_FILE;CONFIG_XML_XPATH")
 # additional defines for tiny configuration
