@@ -1232,7 +1232,7 @@ ROXML_INT int _func_xpath_close_brackets(char *chunk, void *data)
 
 		if (ctx->new_cond) {
 			if (ctx->new_cond->func == ROXML_FUNC_XPATH) {
-				xpath_node_t *xp;
+				xpath_node_t *xp = NULL;
 				ctx->new_cond->func2 = roxml_parse_xpath(ctx->new_cond->arg1, &xp, 1);
 				ctx->new_cond->xp = xp;
 			}
