@@ -718,6 +718,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 					     int *nb, int *max, int ignore, int req_id)
 {
 	int validate_node = 0;
+	node_t *current;
 
 	if ((req_id == 0) && (*nb > 0))
 		return;
@@ -727,7 +728,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 
 	// if found a "all document" axes
 	if (ignore == ROXML_DESC_ONLY) {
-		node_t *current = context->chld;
+		current = context->chld;
 		while (current) {
 			roxml_check_node(xp, root, current, ans, nb, max, ignore, req_id);
 			current = current->sibl;
@@ -736,7 +737,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 
 	switch (xp->axes) {
 	case ROXML_ID_CHILD:{
-			node_t *current = context->chld;
+			current = context->chld;
 			while (current) {
 				validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 				if (validate_node)
@@ -745,14 +746,14 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 			}
 			if ((xp->name == NULL) || (strcmp(xp->name, "text()") == 0)
 			    || (strcmp(xp->name, "node()") == 0)) {
-				node_t *current = roxml_get_txt(context, 0);
+				current = roxml_get_txt(context, 0);
 				while (current) {
 					validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 					current = current->sibl;
 				}
 			}
 			if ((xp->name == NULL) || (strcmp(xp->name, "node()") == 0)) {
-				node_t *current = context->attr;
+				current = context->attr;
 				while (current) {
 					validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 					current = current->sibl;
@@ -797,7 +798,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_ANC:{
-			node_t *current = context->prnt;
+			current = context->prnt;
 			while (current) {
 				validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 				if (validate_node)
@@ -807,7 +808,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_NEXT_SIBL:{
-			node_t *current = context->sibl;
+			current = context->sibl;
 			while (current) {
 				validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 				if (validate_node)
@@ -817,7 +818,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_PREV_SIBL:{
-			node_t *current = context->prnt->chld;
+			current = context->prnt->chld;
 			while (current != context) {
 				validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 				if (validate_node)
@@ -827,7 +828,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_NEXT:{
-			node_t *current = context;
+			current = context;
 			while (current) {
 				node_t *following = current->sibl;
 				while (following) {
@@ -851,7 +852,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_PREV:{
-			node_t *current = context;
+			current = context;
 			while (current && current->prnt) {
 				node_t *preceding = current->prnt->chld;
 				while (preceding != current) {
@@ -878,7 +879,7 @@ ROXML_STATIC ROXML_INT void roxml_check_node(xpath_node_t *xp, node_t *root, nod
 		}
 		break;
 	case ROXML_ID_ANC_O_SELF:{
-			node_t *current = context;
+			current = context;
 			while (current) {
 				validate_node = roxml_validate_axes(root, current, ans, nb, max, xp, req_id);
 				if (validate_node)
