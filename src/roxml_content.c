@@ -155,6 +155,8 @@ ROXML_STATIC ROXML_INT int roxml_name_size(node_t *n, int size, int *offset)
 {
 	int total = 0;
 
+	ROXML_UNUSED(size);
+
 	*offset = 0;
 
 	if (!n)

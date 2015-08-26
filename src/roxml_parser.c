@@ -15,7 +15,7 @@
 
 /* #define DEBUG_PARSING */
 
-ROXML_INT roxml_parser_item_t *roxml_append_parser_item(roxml_parser_item_t *head, char *key, roxml_parse_func func)
+ROXML_INT roxml_parser_item_t *roxml_append_parser_item(roxml_parser_item_t *head, const char *key, roxml_parse_func func)
 {
 	roxml_parser_item_t *item = head;
 

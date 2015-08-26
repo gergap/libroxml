@@ -28,6 +28,7 @@ ROXML_INT int roxml_read_buff(int pos, int size, char *buffer, node_t *node)
 
 ROXML_INT void roxml_close_buff(node_t *n)
 {
+	ROXML_UNUSED(n);
 	return;
 }
 

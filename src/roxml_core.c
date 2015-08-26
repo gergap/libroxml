@@ -376,6 +376,8 @@ ROXML_INT int _func_load_dquoted(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
@@ -393,6 +395,8 @@ ROXML_INT int _func_load_open_node(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	int cur = 1;
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
@@ -595,6 +599,8 @@ ROXML_INT int _func_load_close_pi(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	int cur = 1;
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
@@ -623,6 +629,8 @@ ROXML_INT int _func_load_end_node(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	int cur = 1;
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
@@ -670,6 +678,8 @@ ROXML_INT int _func_load_white(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	int cur = 1;
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
@@ -713,6 +723,8 @@ ROXML_INT int _func_load_colon(char *chunk, void *data)
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 
 	if (context->state == STATE_NODE_NAME) {

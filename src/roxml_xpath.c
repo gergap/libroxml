@@ -1092,6 +1092,9 @@ ROXML_INT int _func_xpath_ignore(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
+	ROXML_UNUSED(data);
 #endif /* DEBUG_PARSING */
 	return 1;
 }
@@ -1168,6 +1171,8 @@ ROXML_INT int _func_xpath_open_parenthesys(char *chunk, void *data)
 	roxml_xpath_ctx_t *ctx = (roxml_xpath_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	if (!ctx->quoted && !ctx->dquoted)
 		ctx->parenthesys = (ctx->parenthesys + 1) % 2;
@@ -1180,6 +1185,8 @@ ROXML_INT int _func_xpath_close_parenthesys(char *chunk, void *data)
 	roxml_xpath_ctx_t *ctx = (roxml_xpath_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	if (!ctx->quoted && !ctx->dquoted)
 		ctx->parenthesys = (ctx->parenthesys + 1) % 2;
