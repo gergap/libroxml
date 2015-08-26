@@ -238,6 +238,7 @@ ROXML_STATIC ROXML_INT void roxml_generate_elm_node(node_t *n, char *name, char 
 {
 	int content_l = 0;
 	int name_l = strlen(name);
+	node_t *new_txt = NULL;
 
 	if (content)
 		content_l = strlen(content);
@@ -247,8 +248,7 @@ ROXML_STATIC ROXML_INT void roxml_generate_elm_node(node_t *n, char *name, char 
 		sprintf(n->src.buf, "<%s>%s</%s>", name, content, name);
 		n->end = name_l + content_l + 2;
 
-		node_t *new_txt =
-		    roxml_create_node(name_l + 2, n->src.buf, ROXML_TXT_NODE | ROXML_PENDING | ROXML_BUFF);
+		new_txt = roxml_create_node(name_l + 2, n->src.buf, ROXML_TXT_NODE | ROXML_PENDING | ROXML_BUFF);
 		roxml_append_node(n, new_txt);
 		new_txt->end = name_l + content_l + 2;
 	} else {
@@ -282,6 +282,8 @@ ROXML_STATIC ROXML_INT void roxml_generate_attr_node(node_t *n, int type, char *
 	int xmlns_l = 0;
 	int content_l = strlen(content);
 	int name_l = strlen(name);
+	roxml_ns_t *ns = NULL;
+	node_t *new_txt = NULL;
 
 	if (type & ROXML_NS_NODE) {
 		xmlns_l = 5;
@@ -291,7 +293,7 @@ ROXML_STATIC ROXML_INT void roxml_generate_attr_node(node_t *n, int type, char *
 		n->src.buf = malloc(sizeof(char) * (name_l + content_l + xmlns_l + 4));
 		sprintf(n->src.buf, "xmlns%s%s=\"%s\"", name_l ? ":" : "", name, content);
 
-		roxml_ns_t *ns = calloc(1, sizeof(roxml_ns_t) + name_l + 1);
+		ns = calloc(1, sizeof(roxml_ns_t) + name_l + 1);
 		ns->id = ROXML_NS_ID;
 		ns->alias = (char *)ns + sizeof(roxml_ns_t);
 		if (name)
@@ -302,8 +304,7 @@ ROXML_STATIC ROXML_INT void roxml_generate_attr_node(node_t *n, int type, char *
 		sprintf(n->src.buf, "%s=\"%s\"", name, content);
 	}
 
-	node_t *new_txt =
-	    roxml_create_node(name_l + 2 + xmlns_l, n->src.buf, ROXML_TXT_NODE | ROXML_PENDING | ROXML_BUFF);
+	new_txt = roxml_create_node(name_l + 2 + xmlns_l, n->src.buf, ROXML_TXT_NODE | ROXML_PENDING | ROXML_BUFF);
 	new_txt->end = name_l + content_l + 2 + xmlns_l;
 	n->end = name_l + 1 + xmlns_l;
 	roxml_append_node(n, new_txt);

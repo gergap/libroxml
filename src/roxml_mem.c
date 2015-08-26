@@ -17,10 +17,10 @@ memory_cell_t head_cell = { PTR_NONE, 0, NULL, 0, NULL, NULL };
 
 ROXML_STATIC ROXML_INT void roxml_release_last(void *data)
 {
-	ROXML_UNUSED(data);
-
 	memory_cell_t *ptr = &head_cell;
 	memory_cell_t *to_delete = NULL;
+
+	ROXML_UNUSED(data);
 
 	while ((ptr->prev != NULL) && (ptr->prev->id != pthread_self()))
 		ptr = ptr->prev;
@@ -55,9 +55,9 @@ ROXML_STATIC ROXML_INT void roxml_release_last(void *data)
 
 ROXML_STATIC ROXML_INT void roxml_release_all(void *data)
 {
-	ROXML_UNUSED(data);
-
 	memory_cell_t *to_delete = NULL;
+
+	ROXML_UNUSED(data);
 
 	head_cell.prev = NULL;
 

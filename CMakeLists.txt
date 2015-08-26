@@ -23,7 +23,7 @@ endif()
 
 # Configure GCC to compile C99 code
 if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    set(WARNINGS "${WARNINGS} -Wall -Wextra -Wformat=2 -Wunknown-pragmas -Wstrict-aliasing -Wpointer-arith -Wcast-align -Wmissing-noreturn -Wundef -Wwrite-strings -Wshadow")
+    set(WARNINGS "${WARNINGS} -Wall -Wextra -Wformat=2 -Wunknown-pragmas -Wstrict-aliasing -Wpointer-arith -Wcast-align -Wmissing-noreturn -Wundef -Wwrite-strings -Wshadow -Wdeclaration-after-statement")
 
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 ${WARNINGS}")
 endif()

@@ -355,12 +355,12 @@ ROXML_INT node_t *roxml_append_node(node_t *parent, node_t *n)
 
 ROXML_INT int _func_load_quoted(char *chunk, void *data)
 {
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
     ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state != STATE_NODE_CONTENT && context->state != STATE_NODE_COMMENT) {
 		if (context->mode == MODE_COMMENT_NONE)
@@ -374,12 +374,12 @@ ROXML_INT int _func_load_quoted(char *chunk, void *data)
 
 ROXML_INT int _func_load_dquoted(char *chunk, void *data)
 {
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
 	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state != STATE_NODE_CONTENT && context->state != STATE_NODE_COMMENT) {
 		if (context->mode == MODE_COMMENT_NONE)
@@ -393,13 +393,13 @@ ROXML_INT int _func_load_dquoted(char *chunk, void *data)
 
 ROXML_INT int _func_load_open_node(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
 	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	switch (context->state) {
 	case STATE_NODE_CDATA:
@@ -422,11 +422,11 @@ ROXML_INT int _func_load_open_node(char *chunk, void *data)
 
 ROXML_INT int _func_load_close_node(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	switch (context->state) {
 	case STATE_NODE_NAME:
@@ -518,12 +518,11 @@ ROXML_INT int _func_load_close_node(char *chunk, void *data)
 
 ROXML_INT int _func_load_open_spec_node(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state == STATE_NODE_BEG) {
 		if (strncmp(chunk, "!--", 3) == 0) {
@@ -556,11 +555,11 @@ ROXML_INT int _func_load_open_spec_node(char *chunk, void *data)
 
 ROXML_INT int _func_load_close_comment(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state == STATE_NODE_COMMENT) {
 		if (chunk[1] == '-') {
@@ -576,11 +575,11 @@ ROXML_INT int _func_load_close_comment(char *chunk, void *data)
 
 ROXML_INT int _func_load_close_cdata(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state == STATE_NODE_CDATA) {
 		if (chunk[1] == ']') {
@@ -597,13 +596,13 @@ ROXML_INT int _func_load_close_cdata(char *chunk, void *data)
 
 ROXML_INT int _func_load_close_pi(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
 	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	if (context->state == STATE_NODE_BEG) {
 		cur = 1;
@@ -627,13 +626,13 @@ ROXML_INT int _func_load_close_pi(char *chunk, void *data)
 
 ROXML_INT int _func_load_end_node(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
 	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	switch (context->state) {
 	case STATE_NODE_BEG:
@@ -676,13 +675,13 @@ ROXML_INT int _func_load_end_node(char *chunk, void *data)
 
 ROXML_INT int _func_load_white(char *chunk, void *data)
 {
+	int cur = 1;
+	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
 #else
 	ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
-	int cur = 1;
-	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
 	switch (context->state) {
 	case STATE_NODE_SINGLE:
