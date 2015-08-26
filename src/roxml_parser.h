@@ -56,3 +56,4 @@ ROXML_INT roxml_parser_item_t *roxml_parser_prepare(roxml_parser_item_t * head);
 ROXML_INT ROXML_PARSE int roxml_parse_line(roxml_parser_item_t * head, char *line, int len, void *ctx);
 
 #endif /* ROXML_PARSER_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

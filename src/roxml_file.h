@@ -46,3 +46,4 @@ ROXML_INT void roxml_close_file(node_t *root);
 ROXML_INT int roxml_parse_file(roxml_load_ctx_t *context, roxml_parser_item_t *parser, FILE *file);
 
 #endif /* ROXML_FILE_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

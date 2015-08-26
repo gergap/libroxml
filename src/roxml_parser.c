@@ -129,3 +129,4 @@ ROXML_INT int roxml_parse_line(roxml_parser_item_t *head, char *line, int len, v
 
 	return (chunk - line);
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

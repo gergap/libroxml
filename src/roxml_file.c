@@ -99,3 +99,4 @@ ROXML_API node_t *roxml_load_doc(char *filename)
 
 	return roxml_load(current_node, file, NULL);
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

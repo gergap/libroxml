@@ -414,3 +414,4 @@
 #define ROXML_WHITE(n) ((n==' ')||(n=='\t')||(n=='\n')||(n=='\r'))
 
 #endif /* ROXML_DEF_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

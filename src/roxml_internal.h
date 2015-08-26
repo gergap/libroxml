@@ -50,3 +50,4 @@
 #include "roxml.h"
 
 #endif /* ROXML_INTERNAL_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

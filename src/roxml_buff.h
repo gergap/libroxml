@@ -46,4 +46,4 @@ ROXML_INT void roxml_close_buff(node_t *n);
 ROXML_INT int roxml_parse_buff(roxml_load_ctx_t *context, roxml_parser_item_t *parser, char *buffer);
 
 #endif /* ROXML_BUFF_H */
-
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

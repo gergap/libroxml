@@ -28,3 +28,4 @@ memory_cell_t head_cell;
 ROXML_INT void *roxml_malloc(int size, int num, int type);
 
 #endif /* ROXML_MEMORY_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

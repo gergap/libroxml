@@ -445,3 +445,4 @@ ROXML_API int roxml_get_node_position(node_t *n)
 
 	return idx;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

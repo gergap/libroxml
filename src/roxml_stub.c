@@ -256,3 +256,4 @@ ROXML_STUB int roxml_parse_buff(roxml_load_ctx_t *context, roxml_parser_item_t *
 	return -1;
 }
 #endif /* CONFIG_XML_BUFF */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

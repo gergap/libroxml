@@ -118,3 +118,4 @@ ROXML_INT ROXML_PARSE int _func_load_colon(char *chunk, void *data);
 ROXML_INT ROXML_PARSE int _func_load_default(char *chunk, void *data);
 
 #endif /* ROXML_CORE_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

@@ -358,3 +358,4 @@ ROXML_API int roxml_commit_changes(node_t *n, char *dest, char **buffer, int hum
 		return roxml_commit_buffer(n, buffer, human);
 	return 0;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

@@ -412,3 +412,4 @@ ROXML_API node_t *roxml_set_ns(node_t *n, node_t *ns)
 
 	return n;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

@@ -1629,3 +1629,5 @@ ROXML_INT int _func_xpath_default(char *chunk, void *data)
 	ctx->shorten_cond = 0;
 	return cur > 0 ? cur : 1;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/
+

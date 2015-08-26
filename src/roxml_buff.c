@@ -56,3 +56,4 @@ ROXML_API node_t *roxml_load_buf(char *buffer)
 
 	return roxml_load(current_node, NULL, buffer);
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

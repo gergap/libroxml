@@ -64,3 +64,4 @@ ROXML_API node_t *roxml_get_root(node_t *n)
 		root = root->prnt;
 	return root;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

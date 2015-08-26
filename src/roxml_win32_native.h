@@ -32,3 +32,4 @@ typedef CRITICAL_SECTION pthread_mutex_t;
 #define pthread_mutex_destroy(a)       DeleteCriticalSection(a)
 
 #endif /* ROXML_WIN32_NATIVE_THREAD_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

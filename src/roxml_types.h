@@ -228,3 +228,4 @@ typedef struct _roxml_parser_item {
 } roxml_parser_item_t;
 
 #endif /* ROXML_TYPES_H */
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

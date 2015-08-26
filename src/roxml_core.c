@@ -357,6 +357,8 @@ ROXML_INT int _func_load_quoted(char *chunk, void *data)
 {
 #ifdef DEBUG_PARSING
 	fprintf(stderr, "calling func %s chunk %c\n", __func__, chunk[0]);
+#else
+    ROXML_UNUSED(chunk);
 #endif /* DEBUG_PARSING */
 	roxml_load_ctx_t *context = (roxml_load_ctx_t *)data;
 
@@ -844,3 +846,4 @@ ROXML_INT int _func_load_default(char *chunk, void *data)
 	context->pos += cur;
 	return cur;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/

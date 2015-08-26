@@ -127,3 +127,4 @@ int main(int argc, char **argv)
 error:
 	return 0;
 }
+/* vim: set ts=8 sw=8 sts=0 tw=0 noet :*/
