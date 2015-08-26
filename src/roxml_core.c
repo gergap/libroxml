@@ -180,8 +180,7 @@ ROXML_STATIC ROXML_INT void roxml_process_begin_node(roxml_load_ctx_t *context, 
 #ifdef IGNORE_EMPTY_TEXT_NODES
 		if (context->empty_text_node == 0) {
 #endif /* IGNORE_EMPTY_TEXT_NODES */
-			node_t *to_be_closed =
-			    roxml_create_node(position, context->src, ROXML_TXT_NODE | context->type);
+			node_t *to_be_closed = roxml_create_node(position, context->src, ROXML_TXT_NODE | context->type);
 			context->candidat_txt = roxml_append_node(context->current_node, context->candidat_txt);
 			roxml_close_node(context->candidat_txt, to_be_closed);
 			context->current_node = context->candidat_txt->prnt;
@@ -310,7 +309,7 @@ ROXML_INT node_t *roxml_set_parent(node_t *parent, node_t *n)
 	n->prnt = parent;
 
 	if (parent->ns && ((parent->ns->type & ROXML_INVALID) != ROXML_INVALID)
-	    && parent->ns->priv && ((roxml_ns_t *)parent->ns->priv)->alias[0] == '\0')
+		&& parent->ns->priv && ((roxml_ns_t *)parent->ns->priv)->alias[0] == '\0')
 		if (n->ns == NULL)
 			n->ns = parent->ns;
 	return n;
@@ -435,12 +434,12 @@ ROXML_INT int _func_load_close_node(char *chunk, void *data)
 				if (context->content_quoted) {
 					context->content_quoted = 0;
 					to_be_closed =
-					    roxml_create_node(context->pos - 1, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos - 1, context->src,
+							ROXML_ATTR_NODE | context->type);
 				} else {
 					to_be_closed =
-					    roxml_create_node(context->pos, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos, context->src,
+							ROXML_ATTR_NODE | context->type);
 				}
 				roxml_close_node(context->candidat_val, to_be_closed);
 			}
@@ -485,7 +484,7 @@ ROXML_INT int _func_load_close_node(char *chunk, void *data)
 	}
 
 	if (context->candidat_node && context->candidat_node->ns
-	    && ((context->candidat_node->ns->type & ROXML_INVALID) == ROXML_INVALID)) {
+		&& ((context->candidat_node->ns->type & ROXML_INVALID) == ROXML_INVALID)) {
 		roxml_free_node(context->candidat_node->ns);
 		context->candidat_node->ns = NULL;
 	}
@@ -645,12 +644,12 @@ ROXML_INT int _func_load_end_node(char *chunk, void *data)
 				if (context->content_quoted) {
 					context->content_quoted = 0;
 					to_be_closed =
-					    roxml_create_node(context->pos - 1, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos - 1, context->src,
+							ROXML_ATTR_NODE | context->type);
 				} else {
 					to_be_closed =
-					    roxml_create_node(context->pos, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos, context->src,
+							ROXML_ATTR_NODE | context->type);
 				}
 				roxml_close_node(context->candidat_val, to_be_closed);
 			}
@@ -688,12 +687,12 @@ ROXML_INT int _func_load_white(char *chunk, void *data)
 				if (context->content_quoted) {
 					context->content_quoted = 0;
 					to_be_closed =
-					    roxml_create_node(context->pos - 1, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos - 1, context->src,
+							ROXML_ATTR_NODE | context->type);
 				} else {
 					to_be_closed =
-					    roxml_create_node(context->pos, context->src,
-							      ROXML_ATTR_NODE | context->type);
+						roxml_create_node(context->pos, context->src,
+							ROXML_ATTR_NODE | context->type);
 				}
 				roxml_close_node(context->candidat_val, to_be_closed);
 				context->inside_node_state = STATE_INSIDE_ARG_BEG;
@@ -722,7 +721,7 @@ ROXML_INT int _func_load_colon(char *chunk, void *data)
 			memcpy(nsname, context->curr_name, context->curr_name_len);
 			nsname[context->curr_name_len] = '\0';
 			context->candidat_node->ns =
-			    roxml_create_node(0, nsname, ROXML_NSDEF_NODE | ROXML_PENDING | ROXML_INVALID);
+				roxml_create_node(0, nsname, ROXML_NSDEF_NODE | ROXML_PENDING | ROXML_INVALID);
 		}
 		context->candidat_node->pos += context->curr_name_len + 2;
 		context->ns = 1;
@@ -766,7 +765,7 @@ ROXML_INT int _func_load_default(char *chunk, void *data)
 		context->state = STATE_NODE_NAME;
 		strncpy(context->curr_name, chunk, MAX_NAME_LEN);
 		while (!ROXML_WHITE(chunk[cur]) && (chunk[cur] != '>') && (chunk[cur] != '/') && (chunk[cur] != ':')
-		       && (chunk[cur] != '\0')) {
+			&& (chunk[cur] != '\0')) {
 			cur++;
 		}
 		context->curr_name_len = cur;
@@ -783,15 +782,15 @@ ROXML_INT int _func_load_default(char *chunk, void *data)
 				}
 			} else if (context->ns == 0) {
 				context->candidat_arg =
-				    roxml_create_node(context->pos - 1, context->src, ROXML_ATTR_NODE | context->type);
+					roxml_create_node(context->pos - 1, context->src, ROXML_ATTR_NODE | context->type);
 				context->candidat_arg =
-				    roxml_append_node(context->candidat_node, context->candidat_arg);
+					roxml_append_node(context->candidat_node, context->candidat_arg);
 			}
 			context->ns = 0;
 			context->inside_node_state = STATE_INSIDE_ARG;
 			strncpy(context->curr_name, chunk, MAX_NAME_LEN);
 			while ((chunk[cur] != '=') && (chunk[cur] != '>') && (chunk[cur] != ':')
-			       && (chunk[cur] != '\0')) {
+				&& (chunk[cur] != '\0')) {
 				cur++;
 			}
 			context->curr_name_len = cur;
@@ -815,10 +814,10 @@ ROXML_INT int _func_load_default(char *chunk, void *data)
 			if (context->mode != MODE_COMMENT_NONE) {
 				context->content_quoted = 1;
 				context->candidat_val =
-				    roxml_create_node(context->pos + 1, context->src, ROXML_TXT_NODE | context->type);
+					roxml_create_node(context->pos + 1, context->src, ROXML_TXT_NODE | context->type);
 			} else {
 				context->candidat_val =
-				    roxml_create_node(context->pos, context->src, ROXML_TXT_NODE | context->type);
+					roxml_create_node(context->pos, context->src, ROXML_TXT_NODE | context->type);
 			}
 			context->candidat_val = roxml_append_node(context->candidat_arg, context->candidat_val);
 			context->inside_node_state = STATE_INSIDE_VAL;
