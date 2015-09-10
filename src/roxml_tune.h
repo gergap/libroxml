@@ -57,7 +57,6 @@
 # ifdef CONFIG_XML_HEAP_BUFFERS
 #  error "The CONFIG_XML_THREAD_SAFE option is not compatible with CONFIG_XML_HEAP_BUFFERS. Disable one of those."
 # endif
-# define CONFIG_XML_THREAD_SAFE
 #endif /* CONFIG_XML_THREAD_SAFE */
 
 /* Define the size of internal buffer.
