@@ -13,6 +13,10 @@
 #include "roxml_parser.h"
 #include "roxml_internal.h"
 
+#ifndef ENODATA
+# define ENODATA 61
+#endif
+
 ROXML_INT int roxml_read_buff(int pos, int size, char *buffer, node_t *node)
 {
 	int ret_len = 0;
